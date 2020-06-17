@@ -1,3 +1,5 @@
+DO @DATE:=20200616;
+
 DROP TABLE IF EXISTS sqldados.TMP2_24746;
 CREATE TEMPORARY TABLE sqldados.TMP2_24746 /*2*/
 SELECT pxa.pdvno                                                 AS pdvno,
@@ -25,7 +27,7 @@ FROM sqlpdv.pxa
   LEFT JOIN sqldados.eord
 	      ON (eord.storeno = pxa.storeno AND eord.ordno = pxa.eordno)
 WHERE (pxa.nfse = '' OR '' = '')
-  AND (pxa.date BETWEEN 20200616 AND 20200616)
+  AND (pxa.date >= @DATE)
   AND (pxa.pdvno = 0 OR 0 = 0)
   AND (pxa.amt - pxa.discount = 0 OR 0 = 0)
   AND (pxa.storeno IN (1, 2, 3, 4, 5, 6, 7, 10))
@@ -64,7 +66,7 @@ FROM sqlpdv.pxa
 WHERE pxacrd.storeno = pxa.storeno
   AND pxacrd.pdvno = pxa.pdvno
   AND pxacrd.xano = pxa.xano
-  AND (pxa.date BETWEEN 20200616 AND 20200616)
+  AND (pxa.date  >= @DATE)
   AND (pxa.nfse = '' OR '' = '')
   AND (pxa.pdvno = 0 OR 0 = 0)
   AND (pxa.amt - pxa.discount = 0 OR 0 = 0)
@@ -94,7 +96,7 @@ SELECT 0               AS tipo,
        storeno,
        SUM(cash_other) AS valor
 FROM sqldados.pdvcx
-WHERE date BETWEEN 20200616 AND 20200616
+WHERE date  >= @DATE
   AND (storeno IN (1, 2, 3, 4, 5, 6, 7, 10))
   AND (pdvno = 0 OR 0 = 0)
 GROUP BY storeno
@@ -104,7 +106,7 @@ SELECT 3               AS tipo,
        storeno,
        SUM(card_other) AS valor
 FROM sqldados.pdvcx
-WHERE date BETWEEN 20200616 AND 20200616
+WHERE date  >= @DATE
   AND (storeno IN (1, 2, 3, 4, 5, 6, 7, 10))
   AND (pdvno = 0 OR 0 = 0)
 GROUP BY storeno
@@ -114,7 +116,7 @@ SELECT 7                AS tipo,
        storeno,
        SUM(cpdue_other) AS valor
 FROM sqldados.pdvcx
-WHERE date BETWEEN 20200616 AND 20200616
+WHERE date  >= @DATE
   AND (storeno IN (1, 2, 3, 4, 5, 6, 7, 10))
   AND (pdvno = 0 OR 0 = 0)
 GROUP BY storeno
@@ -124,7 +126,7 @@ SELECT 8                AS tipo,
        storeno,
        SUM(dup_other)   AS valor
 FROM sqldados.pdvcx
-WHERE date BETWEEN 20200616 AND 20200616
+WHERE date  >= @DATE
   AND (storeno IN (1, 2, 3, 4, 5, 6, 7, 10))
   AND (pdvno = 0 OR 0 = 0)
 GROUP BY storeno
@@ -134,7 +136,7 @@ SELECT 10                 AS tipo,
        storeno,
        SUM(tickets_other) AS valor
 FROM sqldados.pdvcx
-WHERE date BETWEEN 20200616 AND 20200616
+WHERE date  >= @DATE
   AND (storeno IN (1, 2, 3, 4, 5, 6, 7, 10))
   AND (pdvno = 0 OR 0 = 0)
 GROUP BY storeno
@@ -144,7 +146,7 @@ SELECT 1                    AS tipo,
        storeno,
        SUM(ctxa_other)      AS valor
 FROM sqldados.pdvcx
-WHERE date BETWEEN 20200616 AND 20200616
+WHERE date  >= @DATE
   AND (storeno IN (1, 2, 3, 4, 5, 6, 7, 10))
   AND (pdvno = 0 OR 0 = 0)
 GROUP BY storeno;

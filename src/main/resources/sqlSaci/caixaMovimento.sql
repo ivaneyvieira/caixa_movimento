@@ -197,7 +197,7 @@ SELECT T8.*
 FROM sqldados.TMP8_24746 AS T8
 GROUP BY 11, nro, lj, Data, nf, sr;
 
-SELECT LPAD(@item := @item + 1, 4, ' ') AS item, T9.*
+SELECT @item := @item + 1 AS item, T9.*
 FROM sqldados.TMP9_24746 AS T9
 WHERE CASE '2'
 	WHEN '0'

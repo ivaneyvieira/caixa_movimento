@@ -1,4 +1,4 @@
-package br.com.astrosoft.pedidoTransferencia.viewmodel
+package br.com.astrosoft.caixaMovimento.viewmodel
 
 import br.com.astrosoft.framework.viewmodel.IView
 import br.com.astrosoft.framework.viewmodel.ViewModel

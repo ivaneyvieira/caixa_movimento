@@ -1,10 +1,10 @@
-package br.com.astrosoft.pedidoTransferencia.viewmodel
+package br.com.astrosoft.caixaMovimento.viewmodel
 
 import br.com.astrosoft.framework.viewmodel.IView
 import br.com.astrosoft.framework.viewmodel.ViewModel
-import br.com.astrosoft.pedidoTransferencia.model.beans.CaixaMovimento
+import br.com.astrosoft.caixaMovimento.model.beans.CaixaMovimento
 
-class PedidoTransferenciaViewModel(view: IPedidoTransferenciaView): ViewModel<IPedidoTransferenciaView>(view) {
+class CaixaMovimentacaoViewModel(view: ICaixaMovimentacaoView): ViewModel<ICaixaMovimentacaoView>(view) {
   fun updateGridMovimentoLink() {
     view.updateGridMovimentoLink(listMovimentoLink())
   }
@@ -14,6 +14,6 @@ class PedidoTransferenciaViewModel(view: IPedidoTransferenciaView): ViewModel<IP
   }
 }
 
-interface IPedidoTransferenciaView: IView {
+interface ICaixaMovimentacaoView: IView {
   fun updateGridMovimentoLink(itens: List<CaixaMovimento>)
 }

@@ -1,5 +1,7 @@
 package br.com.astrosoft
 
+import br.com.astrosoft.caixaMovimento.model.saci
+import br.com.astrosoft.framework.spring.IUser
 import br.com.astrosoft.framework.spring.SecurityUtils
 import br.com.astrosoft.framework.view.ViewUtil
 
@@ -10,6 +12,13 @@ object AppConfig {
   const val shortName = "caixa Movimentação"
   const val iconPath = "icons/logo.png"
   
-  val userDetails get() = SecurityUtils.userDetails
-  val userSaci get() = userDetails?.userSaci
+  val test : Boolean?
+    get() = false
+  
+  val userDetails
+    get() = SecurityUtils.userDetails
+  val userSaci
+    get() = userDetails?.user
+  
+  fun findUser(username : String?) : IUser? = saci.findUser(username)
 }

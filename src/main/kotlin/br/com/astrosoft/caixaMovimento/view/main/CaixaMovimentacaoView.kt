@@ -1,12 +1,14 @@
-package br.com.astrosoft.pedidoTransferencia.view
+package br.com.astrosoft.caixaMovimento.view.main
+
 
 import br.com.astrosoft.AppConfig
 import br.com.astrosoft.framework.view.ViewLayout
 import br.com.astrosoft.framework.view.updateItens
-import br.com.astrosoft.pedidoTransferencia.model.beans.CaixaMovimento
-import br.com.astrosoft.pedidoTransferencia.model.beans.UserSaci
-import br.com.astrosoft.pedidoTransferencia.viewmodel.IPedidoTransferenciaView
-import br.com.astrosoft.pedidoTransferencia.viewmodel.PedidoTransferenciaViewModel
+import br.com.astrosoft.caixaMovimento.model.beans.CaixaMovimento
+import br.com.astrosoft.caixaMovimento.model.beans.UserSaci
+import br.com.astrosoft.caixaMovimento.view.layout.CaixaMovimentacaoLayout
+import br.com.astrosoft.caixaMovimento.viewmodel.ICaixaMovimentacaoView
+import br.com.astrosoft.caixaMovimento.viewmodel.CaixaMovimentacaoViewModel
 import com.github.mvysny.karibudsl.v10.grid
 import com.github.mvysny.karibudsl.v10.tabSheet
 import com.github.mvysny.karibudsl.v10.verticalLayout
@@ -20,16 +22,16 @@ import com.vaadin.flow.data.provider.ListDataProvider
 import com.vaadin.flow.router.PageTitle
 import com.vaadin.flow.router.Route
 
-@Route(layout = PedidoTransferenciaLayout::class)
+@Route(layout = CaixaMovimentacaoLayout::class)
 @PageTitle(AppConfig.title)
 @HtmlImport("frontend://styles/shared-styles.html")
-class PedidoTransferenciaView: ViewLayout<PedidoTransferenciaViewModel>(), IPedidoTransferenciaView {
+class CaixaMovimentacaoView: ViewLayout<CaixaMovimentacaoViewModel>(), ICaixaMovimentacaoView {
   private lateinit var gridMovimentoLink: Grid<CaixaMovimento>
   //
-  override val viewModel: PedidoTransferenciaViewModel = PedidoTransferenciaViewModel(this)
+  override val viewModel: CaixaMovimentacaoViewModel = CaixaMovimentacaoViewModel(this)
   private val dataProviderMovimentoLink = ListDataProvider<CaixaMovimento>(mutableListOf())
   
-  override fun isAccept(user: UserSaci) = true
+  override fun isAccept() = true
   
   init {
     tabSheet {

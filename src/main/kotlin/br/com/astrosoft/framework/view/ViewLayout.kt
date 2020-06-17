@@ -3,7 +3,6 @@ package br.com.astrosoft.framework.view
 import br.com.astrosoft.framework.util.format
 import br.com.astrosoft.framework.viewmodel.IView
 import br.com.astrosoft.framework.viewmodel.ViewModel
-import br.com.astrosoft.pedidoTransferencia.model.beans.UserSaci
 import com.github.mvysny.karibudsl.v10.KFormLayout
 import com.github.mvysny.karibudsl.v10.TabSheet
 import com.github.mvysny.karibudsl.v10.VaadinDsl
@@ -57,7 +56,7 @@ abstract class ViewLayout<VM: ViewModel<*>>: VerticalLayout(), IView, BeforeLeav
     this.setSizeFull()
   }
   
-  abstract fun isAccept(user: UserSaci): Boolean
+  abstract fun isAccept(): Boolean
   
   override fun showError(msg: String) {
     ConfirmDialog.createError()

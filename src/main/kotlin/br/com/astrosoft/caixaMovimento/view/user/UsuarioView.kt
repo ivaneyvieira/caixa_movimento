@@ -1,10 +1,12 @@
-package br.com.astrosoft.pedidoTransferencia.view
+package br.com.astrosoft.caixaMovimento.view.user
 
+import br.com.astrosoft.AppConfig
 import br.com.astrosoft.framework.view.ViewLayout
-import br.com.astrosoft.pedidoTransferencia.model.beans.UserSaci
-import br.com.astrosoft.pedidoTransferencia.view.UserCrudFormFactory.Companion.TITLE
-import br.com.astrosoft.pedidoTransferencia.viewmodel.IUsuarioView
-import br.com.astrosoft.pedidoTransferencia.viewmodel.UsuarioViewModel
+import br.com.astrosoft.caixaMovimento.model.beans.UserSaci
+import br.com.astrosoft.caixaMovimento.view.layout.CaixaMovimentacaoLayout
+import br.com.astrosoft.caixaMovimento.view.user.UserCrudFormFactory.Companion.TITLE
+import br.com.astrosoft.caixaMovimento.viewmodel.IUsuarioView
+import br.com.astrosoft.caixaMovimento.viewmodel.UsuarioViewModel
 import com.github.mvysny.karibudsl.v10.alignSelf
 import com.github.mvysny.karibudsl.v10.button
 import com.github.mvysny.karibudsl.v10.formLayout
@@ -40,12 +42,12 @@ import org.vaadin.crudui.crud.impl.GridCrud
 import org.vaadin.crudui.form.AbstractCrudFormFactory
 import org.vaadin.gatanaso.MultiselectComboBox
 
-@Route(layout = PedidoTransferenciaLayout::class)
+@Route(layout = CaixaMovimentacaoLayout::class)
 @PageTitle(TITLE)
 class UsuarioView: ViewLayout<UsuarioViewModel>(), IUsuarioView {
   override val viewModel = UsuarioViewModel(this)
   
-  override fun isAccept(user: UserSaci) = user.admin
+  override fun isAccept() = AppConfig.userSaci?.roles()?.contains("ADMIN") == true
   
   init {
     form("Editor de usuários")

@@ -1,6 +1,8 @@
-package br.com.astrosoft.pedidoTransferencia.view
+package br.com.astrosoft.caixaMovimento.view.layout
 
 import br.com.astrosoft.AppConfig
+import br.com.astrosoft.caixaMovimento.view.main.CaixaMovimentacaoView
+import br.com.astrosoft.caixaMovimento.view.user.UsuarioView
 import com.github.mvysny.karibudsl.v10.anchor
 import com.github.mvysny.karibudsl.v10.drawer
 import com.github.mvysny.karibudsl.v10.drawerToggle
@@ -29,7 +31,7 @@ import com.vaadin.flow.theme.lumo.Lumo
      shortName = AppConfig.shortName,
      iconPath = AppConfig.iconPath,
      enableInstallPrompt = false)
-class PedidoTransferenciaLayout: AppLayout() {
+class CaixaMovimentacaoLayout: AppLayout() {
   init {
     isDrawerOpened = true
     navbar {
@@ -50,10 +52,10 @@ class PedidoTransferenciaLayout: AppLayout() {
         orientation = Tabs.Orientation.VERTICAL
         tab {
           this.icon(VaadinIcon.FORM)
-          routerLink(text = "Pedidos", viewType = PedidoTransferenciaView::class)
+          routerLink(text = "Pedidos", viewType = CaixaMovimentacaoView::class)
         }
         tab {
-          this.isEnabled = AppConfig.userSaci?.admin ?: false
+          this.isEnabled = AppConfig.userSaci?.roles()?.contains("ADMIN") ?: false
           this.icon(VaadinIcon.USER)
           routerLink(text = "Usuário", viewType = UsuarioView::class)
         }

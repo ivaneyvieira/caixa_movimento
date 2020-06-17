@@ -1,8 +1,7 @@
-package br.com.astrosoft.pedidoTransferencia.model.beans
+package br.com.astrosoft.caixaMovimento.model.beans
 
 import br.com.astrosoft.AppConfig
-import br.com.astrosoft.pedidoTransferencia.model.saci
-import java.sql.Time
+import br.com.astrosoft.caixaMovimento.model.saci
 import java.time.LocalDate
 import java.time.LocalTime
 
@@ -32,9 +31,6 @@ data class CaixaMovimento(val item: Int?,
   }
   
   companion object {
-    val storeno
-      get() = AppConfig.userSaci?.storeno ?: 0
-    
     fun listaCaixaMovimento(): List<CaixaMovimento> {
       return saci.listaCaixaMovimentoLink()
     }

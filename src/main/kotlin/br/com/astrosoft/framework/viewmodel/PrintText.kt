@@ -1,6 +1,6 @@
 package br.com.astrosoft.framework.viewmodel
 
-import br.com.astrosoft.pedidoTransferencia.model.QuerySaci
+import br.com.astrosoft.AppConfig
 import br.com.astrosoft.framework.util.CupsUtils
 import br.com.astrosoft.framework.util.lpad
 import br.com.astrosoft.framework.util.rpad
@@ -55,7 +55,7 @@ abstract class PrintText<T> {
         }
         sumary(text)
         finalize(text)
-        if(!QuerySaci.test)
+        if(AppConfig.test == false)
           CupsUtils.printCups(impressora, text.toString())
         else {
           println(text.toString())

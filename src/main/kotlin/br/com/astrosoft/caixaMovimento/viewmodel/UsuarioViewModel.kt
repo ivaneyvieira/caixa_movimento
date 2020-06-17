@@ -1,6 +1,6 @@
-package br.com.astrosoft.pedidoTransferencia.viewmodel
+package br.com.astrosoft.caixaMovimento.viewmodel
 
-import br.com.astrosoft.pedidoTransferencia.model.beans.UserSaci
+import br.com.astrosoft.caixaMovimento.model.beans.UserSaci
 import br.com.astrosoft.framework.viewmodel.IView
 import br.com.astrosoft.framework.viewmodel.ViewModel
 import br.com.astrosoft.framework.viewmodel.fail

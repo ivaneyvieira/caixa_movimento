@@ -1,13 +1,18 @@
-package br.com.astrosoft.pedidoTransferencia.model.beans
+package br.com.astrosoft.caixaMovimento.model.beans
 
-import br.com.astrosoft.pedidoTransferencia.model.saci
+import br.com.astrosoft.caixaMovimento.model.saci
+import br.com.astrosoft.framework.spring.IUser
 import kotlin.math.pow
 
-class UserSaci {
+class UserSaci : IUser {
   var no: Int = 0
   var name: String = ""
-  var login: String = ""
-  var senha: String = ""
+  override var login: String = ""
+  override var senha: String = ""
+  override fun roles(): List<String> {
+    return if(admin) listOf("ADMIN") else listOf("USER")
+  }
+  
   var bitAcesso: Int = 0
   var prntno: Int = 0
   var impressora: String = ""

@@ -165,7 +165,7 @@ SELECT pxb.storeno                                                    AS lj,
        pxb.xatype                                                     AS tp,
        ifnull(LPAD(card.sname, 8, ' '), LPAD(query1.string, 8, ' '))  AS tipos,
        pxb.autorz                                                     AS autoriz,
-       pxb.amtot                                                      AS parcela,
+       pxb.amtot/100                                                      AS parcela,
        RPAD(MID(IFNULL(eordrk.remarks__480, ' '), 441, 480), 40, ' ') AS obs
 FROM sqldados.TMP4_24746           pxb
   LEFT JOIN sqldados.ecfpre

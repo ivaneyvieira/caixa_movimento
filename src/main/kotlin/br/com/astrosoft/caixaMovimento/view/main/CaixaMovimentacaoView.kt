@@ -1,6 +1,5 @@
 package br.com.astrosoft.caixaMovimento.view.main
 
-
 import br.com.astrosoft.AppConfig
 import br.com.astrosoft.framework.view.ViewLayout
 import br.com.astrosoft.framework.view.updateItens
@@ -26,10 +25,8 @@ import com.vaadin.flow.router.Route
 @PageTitle(AppConfig.title)
 @HtmlImport("frontend://styles/shared-styles.html")
 class CaixaMovimentacaoView: ViewLayout<CaixaMovimentacaoViewModel>(), ICaixaMovimentacaoView {
-  private lateinit var gridMovimentoLink: Grid<CaixaMovimento>
-  //
+  private lateinit var gridMovimentoLink: PainelGridMovimentoLink
   override val viewModel: CaixaMovimentacaoViewModel = CaixaMovimentacaoViewModel(this)
-  private val dataProviderMovimentoLink = ListDataProvider<CaixaMovimento>(mutableListOf())
   
   override fun isAccept() = true
   
@@ -54,16 +51,18 @@ class CaixaMovimentacaoView: ViewLayout<CaixaMovimentacaoViewModel>(), ICaixaMov
       isMargin = false
       isPadding = false
       
-      gridMovimentoLink = this.grid(dataProvider = dataProviderMovimentoLink)
+      gridMovimentoLink = PainelGridMovimentoLink()
+      
+      this.addAndExpand(gridMovimentoLink)
       
       viewModel.updateGridMovimentoLink()
     }
   }
   
   override fun updateGridMovimentoLink(itens: List<CaixaMovimento>) {
-    gridMovimentoLink.deselectAll()
-    dataProviderMovimentoLink.updateItens(itens)
+    gridMovimentoLink.updateGrid(itens)
   }
+
   
   companion object {
     const val TAB_MOVIMENTO_LINK: String = "Cartão Link"

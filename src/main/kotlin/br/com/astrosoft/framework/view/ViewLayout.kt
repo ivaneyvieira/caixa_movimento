@@ -98,20 +98,9 @@ abstract class ViewLayout<VM: ViewModel<*>>: VerticalLayout(), IView, BeforeLeav
   }
   
   override fun beforeEnter(event: BeforeEnterEvent?) {
-    /*
-    if(!LoginService.isLogged())
-      event?.forwardTo(LoginView::class.java)
-    else {
-      saci.findUser(RegistryUserInfo.usuario)
-        ?.let {usuario ->
-          if(!isAccept(usuario))
-            event?.rerouteTo(AccessNotAllowed::class.java)
-        }
-    }*/
   }
   
   override fun afterNavigation(event: AfterNavigationEvent?) {
-    //   loginForm.isOpened = LoginService.isLogged() == false
   }
   
   fun VerticalLayout.form(title: String, componentes: KFormLayout.() -> Unit = {}) {

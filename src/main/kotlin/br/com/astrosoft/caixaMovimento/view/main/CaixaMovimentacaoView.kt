@@ -51,9 +51,8 @@ class CaixaMovimentacaoView: ViewLayout<CaixaMovimentacaoViewModel>(), ICaixaMov
       isMargin = false
       isPadding = false
       
-      gridMovimentoLink = PainelGridMovimentoLink()
-      
-      this.addAndExpand(gridMovimentoLink)
+      gridMovimentoLink = painelGridMovimentoLink()
+
       
       viewModel.updateGridMovimentoLink()
     }
@@ -62,7 +61,6 @@ class CaixaMovimentacaoView: ViewLayout<CaixaMovimentacaoViewModel>(), ICaixaMov
   override fun updateGridMovimentoLink(itens: List<CaixaMovimento>) {
     gridMovimentoLink.updateGrid(itens)
   }
-
   
   companion object {
     const val TAB_MOVIMENTO_LINK: String = "Cartão Link"

@@ -1,4 +1,4 @@
-DO @DATE:=20200616;
+DO @DATE := 20200616;
 
 DROP TABLE IF EXISTS sqldados.TMP2_24746;
 CREATE TEMPORARY TABLE sqldados.TMP2_24746 /*2*/
@@ -66,7 +66,7 @@ FROM sqlpdv.pxa
 WHERE pxacrd.storeno = pxa.storeno
   AND pxacrd.pdvno = pxa.pdvno
   AND pxacrd.xano = pxa.xano
-  AND (pxa.date  >= @DATE)
+  AND (pxa.date >= @DATE)
   AND (pxa.nfse = '' OR '' = '')
   AND (pxa.pdvno = 0 OR 0 = 0)
   AND (pxa.amt - pxa.discount = 0 OR 0 = 0)
@@ -96,7 +96,7 @@ SELECT 0               AS tipo,
        storeno,
        SUM(cash_other) AS valor
 FROM sqldados.pdvcx
-WHERE date  >= @DATE
+WHERE date >= @DATE
   AND (storeno IN (1, 2, 3, 4, 5, 6, 7, 10))
   AND (pdvno = 0 OR 0 = 0)
 GROUP BY storeno
@@ -106,7 +106,7 @@ SELECT 3               AS tipo,
        storeno,
        SUM(card_other) AS valor
 FROM sqldados.pdvcx
-WHERE date  >= @DATE
+WHERE date >= @DATE
   AND (storeno IN (1, 2, 3, 4, 5, 6, 7, 10))
   AND (pdvno = 0 OR 0 = 0)
 GROUP BY storeno
@@ -116,7 +116,7 @@ SELECT 7                AS tipo,
        storeno,
        SUM(cpdue_other) AS valor
 FROM sqldados.pdvcx
-WHERE date  >= @DATE
+WHERE date >= @DATE
   AND (storeno IN (1, 2, 3, 4, 5, 6, 7, 10))
   AND (pdvno = 0 OR 0 = 0)
 GROUP BY storeno
@@ -126,7 +126,7 @@ SELECT 8                AS tipo,
        storeno,
        SUM(dup_other)   AS valor
 FROM sqldados.pdvcx
-WHERE date  >= @DATE
+WHERE date >= @DATE
   AND (storeno IN (1, 2, 3, 4, 5, 6, 7, 10))
   AND (pdvno = 0 OR 0 = 0)
 GROUP BY storeno
@@ -136,7 +136,7 @@ SELECT 10                 AS tipo,
        storeno,
        SUM(tickets_other) AS valor
 FROM sqldados.pdvcx
-WHERE date  >= @DATE
+WHERE date >= @DATE
   AND (storeno IN (1, 2, 3, 4, 5, 6, 7, 10))
   AND (pdvno = 0 OR 0 = 0)
 GROUP BY storeno
@@ -146,7 +146,7 @@ SELECT 1                    AS tipo,
        storeno,
        SUM(ctxa_other)      AS valor
 FROM sqldados.pdvcx
-WHERE date  >= @DATE
+WHERE date >= @DATE
   AND (storeno IN (1, 2, 3, 4, 5, 6, 7, 10))
   AND (pdvno = 0 OR 0 = 0)
 GROUP BY storeno;
@@ -167,7 +167,7 @@ SELECT pxb.storeno                                                    AS lj,
        pxb.xatype                                                     AS tp,
        ifnull(LPAD(card.sname, 8, ' '), LPAD(query1.string, 8, ' '))  AS tipos,
        pxb.autorz                                                     AS autoriz,
-       pxb.amtot/100                                                      AS parcela,
+       IFNULL(pxb.amtot / 100, 0.00)                                  AS parcela,
        RPAD(MID(IFNULL(eordrk.remarks__480, ' '), 441, 480), 40, ' ') AS obs
 FROM sqldados.TMP4_24746           pxb
   LEFT JOIN sqldados.ecfpre

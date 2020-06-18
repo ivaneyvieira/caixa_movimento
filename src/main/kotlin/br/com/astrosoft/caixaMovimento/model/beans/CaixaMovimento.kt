@@ -17,7 +17,7 @@ data class CaixaMovimento(val item: Int?,
                                val tp: Int,
                                val tipos: String?,
                                val autoriz: String,
-                               val parcela: Double?,
+                               val parcela: Double,
                                val obs: String?) {
   val notaFiscal: String
     get() = numeroNota(nf.toString(), sr)
